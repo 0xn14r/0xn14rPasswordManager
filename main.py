@@ -265,8 +265,8 @@ def QueryByID():
   searchByID=input("Enter ID to search\n")
   cur.execute("SELECT * FROM User WHERE id = ? ",(searchByID,))
   search_result = cur.fetchall()
-  for all in search_result:
-    print(all)
+  for row in search_result:
+    print("\nRecord ID:",row[0],"\nFirst Name:",row[1],"\nLast Name:",row[2],"\nPassword:",row[3],"\nPK:",row[4])
 
 #SEARCHING IN DB BY FIRST NAME
 
@@ -276,8 +276,8 @@ def QueryByFname():
   searchByFName=input("Enter first name to search\n")
   cur.execute("SELECT * FROM User WHERE first_name = ? ",(searchByFName,))
   search_result = cur.fetchall()
-  for all in search_result:
-    print(all)
+  for row in search_result:
+    print("\nRecord ID:",row[0],"\nFirst Name:",row[1],"\nLast Name:",row[2],"\nPassword:",row[3],"\nPK:",row[4])
 
 #SEARCHING IN DB BY LAST NAME
 
@@ -287,8 +287,10 @@ def QueryByLname():
   searchByLName=input("Enter last name to search\n")
   cur.execute("SELECT * FROM User WHERE last_name = ? ",(searchByLName,))
   search_result= cur.fetchall()
-  for all in search_result:
-    print(all)
+  for row in search_result:
+    print("\nRecord ID:",row[0],"\nFirst Name:",row[1],"\nLast Name:",row[2],"\nPassword:",row[3],"\nPK:",row[4])
+
+#DELETE RECORD FROM DB FUNCTION 
 
 def DeleteRecord():
   conn = sqlite3.connect('Userlocal.db')
