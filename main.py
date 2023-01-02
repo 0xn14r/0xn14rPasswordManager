@@ -38,9 +38,9 @@ def Printable1():
 #############################################################
 #                         CONTACT                           #
 #############################################################
-#   DEVELOPER 0xn14r  Nizar Rida                            #
-#   Email Address  NizarRida98@outlook.com                  #
-#   Linkedin  httpswww.linkedin.cominnizarridaa             #
+#   DEVELOPER: 0xn14r  Nizar Rida                           #
+#   Email Address:  NizarRida98@outlook.com                 #
+#   Linkedin  https://www.linkedin.com/in/nizarridaa        #
 #   Whatsapp  + 961 03 490 468                              #
 #############################################################
 '''
@@ -165,11 +165,9 @@ def subMenu(password):
         y=input("Enter your last name:\n")
         cur.execute("INSERT INTO User (first_name, last_name, pass_word, public_key) VALUES (?,?,?,?)", (x,y,str(a),str(publicKey)))
         conn.commit()
-        cur.execute("SELECT * FROM User")
-        with open(f'PrivateKeyOf{RandId}.txt', 'w') as f:
+        with open(f'PrivateKeyOf:{RandId}.txt', 'w') as f:
           f.write(f'Your private key is: {privateKey}'"\n")
-
-        print(cur.fetchall())
+        print("\nRecord saved. \nYour private key is: ",privateKey,"\n")
         conn.close()
         return Menu()
     if(c=='2'):
@@ -207,9 +205,9 @@ def InitializeConn():
 
 def PrintTable():
   cur.execute("SELECT * FROM User")
-  result = cur.fetchall()
-  for all in result:
-    print(all)
+  result= cur.fetchall()
+  for row in result:
+    print("\nRecord ID:",row[0],"\nFirst Name:",row[1],"\nLast Name:",row[2],"\nPassword:",row[3],"\nPK:",row[4])
 
 #NESTED MENU PART 1 OF 2
  
