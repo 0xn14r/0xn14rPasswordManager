@@ -290,6 +290,29 @@ def QueryByLname():
   for all in search_result:
     print(all)
 
+def DeleteRecord():
+  conn = sqlite3.connect('Userlocal.db')
+  cur=conn.cursor()
+  j=input("\nDo you know the ID of the record you would like to delete? (y/n)\n")
+  if (j=='y'):
+    print("Enter the unique record ID you would like to delete:")
+    decision=input()
+    cur.execute("DELETE FROM USER WHERE id = ?",(decision,))
+    print("Record deleted successfully.\n")
+    conn.commit()
+    conn.close()
+    return Menu()
+  if (j=='n'):
+    print("Here's the database:\n")
+    PrintTable()
+    return DeleteRecord()
+  else:
+    print("Invalid option")
+    return DeleteRecord()
+
+
+
+
 #MAIN MENU FUNCTION
 
 def Menu():
@@ -306,7 +329,8 @@ def Menu():
     print("[2] Save a password.")
     print("[3] Manage all passwords.")
     print("[4] Show all data.")
-    print("[5] Exit.")
+    print("[5] Delete a record.")
+    print("[6] Exit.")
 
     #MENU AND USER SELECTION AND BRIEFING
     userSelection=input("Please enter your choice\n")
@@ -471,9 +495,16 @@ Do you agree to the conditions? (y/n)
       print("\n\n")
       return Menu()
 
+#DELETE RECORD IMPLEMENTATION
+    elif userSelection=='5':
+      DeleteRecord()
+
+
+
+
 #EXIT PROGRAM OPTION
 
-    elif userSelection=='5':
+    elif userSelection=='6':
       Exit()
 
     else:
@@ -486,3 +517,4 @@ conn = sqlite3.connect('Userlocal.db')
 cur=conn.cursor()  
 Printable1()
 Menu()
+
